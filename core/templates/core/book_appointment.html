@@ -1,0 +1,31 @@
+<body style="background-color: #f0f2f5; font-family: sans-serif; margin: 0; padding: 20px;">
+    <div style="max-width: 500px; margin: 30px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+        <h2 style="color: #0d47a1; text-align: center;">📅 Book an Appointment</h2>
+
+        <p style="font-weight: bold; margin-top: 20px;">Select an Available Slot:</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <button style="padding: 10px; border: 1px solid #0d47a1; background: white; color: #0d47a1; border-radius: 5px; cursor: pointer;">09:00 AM</button>
+            <button style="padding: 10px; border: 1px solid #0d47a1; background: white; color: #0d47a1; border-radius: 5px; cursor: pointer;">11:00 AM</button>
+            <button style="padding: 10px; border: 1px solid #0d47a1; background: white; color: #0d47a1; border-radius: 5px; cursor: pointer;">02:00 PM</button>
+            <button style="padding: 10px; border: 1px solid #0d47a1; background: white; color: #0d47a1; border-radius: 5px; cursor: pointer;">04:00 PM</button>
+        </div>
+
+        <div style="margin-top: 30px; padding: 15px; background: #e8f5e9; border-radius: 10px; text-align: center; border-left: 5px solid #2e7d32;">
+            <p style="margin: 0; font-weight: bold; color: #2e7d32;">Need Help?</p>
+            <p style="font-size: 14px;">Ask our health assistant for guidance.</p>
+            <a href="#" style="text-decoration: none; background: #2e7d32; color: white; padding: 8px 20px; border-radius: 20px; display: inline-block; margin-top: 5px;">CHAT WITH BOT</a>
+        </div>
+
+        <div style="margin-top: 20px; text-align: center;">
+            <a href="/profile/" style="color: #666; font-size: 14px;">Cancel and go back</a>
+        </div>
+    </div>
+<script>
+    function startChat() {
+        let msg = prompt("How can I help you today?");
+        if (msg) {
+            alert("County Health Bot: I've received your message about '" + msg + "'. A medic will review this shortly!");
+        }
+    }
+</script>
+</body>

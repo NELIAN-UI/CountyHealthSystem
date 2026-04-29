@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin', # Must be first!
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -122,3 +123,32 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_REDIRECT_URL = '/profile/'
+JAZZMIN_SETTINGS = {
+    "site_title": "County Health Admin",
+    "site_header": "County Health",
+    "site_brand": "Hospital Management",
+    "welcome_sign": "Welcome to the Hospital Dashboard",
+    "copyright": "County Health System Ltd",
+    "search_model": ["core.Patient"],
+    "topmenu_links": [
+        {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"name": "View Site", "url": "/", "new_window": True},
+    ],
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "icons": {
+        "auth.user": "fas fa-user",
+        "core.Patient": "fas fa-user-injured",
+        "core.Doctor": "fas fa-user-md",
+        "core.Medicine": "fas fa-pills",
+        "core.Appointment": "fas fa-calendar-check",
+        "core.Ward": "fas fa-hospital-symbol",
+    },
+}
+
+# This sets the theme color to Blue to match your patient side
+JAZZMIN_UI_TWEAKS = {
+    "theme": "flatly",
+    "navbar": "navbar-dark navbar-primary",
+}

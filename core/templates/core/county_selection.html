@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body style="background-color: #f0f2f5; font-family: sans-serif; margin: 0; padding: 20px;">
+    <div style="max-width: 500px; margin: 40px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+        <h2 style="color: #0d47a1;">Select Your County</h2>
+        <p style="color: #666;">Choose a county to see available health facilities and distances.</p>
+
+        <div style="margin-top: 25px; display: flex; flex-direction: column; gap: 15px;">
+            <a href="/hospitals/?county=Kakamega" style="text-decoration: none; background: #e3f2fd; color: #0d47a1; padding: 15px; border-radius: 10px; font-weight: bold; border: 1px solid #bbdefb;">Kakamega</a>
+            <a href="/hospitals/?county=Nairobi" style="text-decoration: none; background: #e3f2fd; color: #0d47a1; padding: 15px; border-radius: 10px; font-weight: bold; border: 1px solid #bbdefb;">Nairobi</a>
+            <a href="/hospitals/?county=Uasin Gishu" style="text-decoration: none; background: #e3f2fd; color: #0d47a1; padding: 15px; border-radius: 10px; font-weight: bold; border: 1px solid #bbdefb;">Uasin Gishu</a>
+            <a href="/hospitals/?county=Kisumu" style="text-decoration: none; background: #e3f2fd; color: #0d47a1; padding: 15px; border-radius: 10px; font-weight: bold; border: 1px solid #bbdefb;">Kisumu</a>
+        </div>
+
+        <p style="margin-top: 20px; font-size: 13px; color: #888;">
+    Don't see your county? <br> 
+    <button type="button" onclick="showMap()" style="color: #0d47a1; background: none; border: none; cursor: pointer; text-decoration: underline; font-size: 13px; padding: 0;">
+        Request to add a new location
+    </button>
+</p>
+<div id="map-section" style="display:none; margin-top: 20px;">
+    <div id="map" style="height: 300px; width: 100%; border-radius: 10px; border: 2px solid #0d47a1;"></div>
+    
+    <h3 style="color: #0d47a1; margin-top: 15px;">Closest Hospital</h3>
+    <div id="hospital-list">
+        </div>
+</div>
+    </div>
+</body>
+<script>
+function showMap() {
+    // 1. Reveal the hidden map section
+    document.getElementById('map-section').style.display = 'block';
+
+    // 2. Center the map near your location in Kakamega
+    var map = L.map('map').setView([-0.2827, 34.7519], 15);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+    // 3. Define our target hospital (e.g., Kakamega County General)
+    var hospital = { name: "Kakamega County General Hospital", lat: -0.2835, lng: 34.7550 };
+    
+    // Add a marker for the hospital
+    L.marker([hospital.lat, hospital.lng]).addTo(map)
+        .bindPopup(hospital.name).openPopup();
+
+    // 4. Find the user and show the distance
+    navigator.geolocation.getCurrentPosition((position) => {
+        var userLat = position.coords.latitude;
+        var userLng = position.coords.longitude;
+
+        // Calculate distance in meters using Leaflet's built-in tool
+        var dist = map.distance([userLat, userLng], [hospital.lat, hospital.lng]);
+
+        // Display the hospital info in our list div
+        document.getElementById('hospital-list').innerHTML = `
+            <div style="padding: 15px; background: #e3f2fd; border-radius: 8px; border-left: 5px solid #0d47a1; cursor: pointer;" 
+                 onclick="window.location.href='/hospitals/'">
+                <strong style="color: #0d47a1;">${hospital.name}</strong><br>
+                <span style="color: #2e7d32; font-weight: bold;">${Math.round(dist)} meters away</span>
+            </div>
+        `;
+    });
+}
+</script>

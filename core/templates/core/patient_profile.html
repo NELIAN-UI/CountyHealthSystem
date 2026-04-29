@@ -1,0 +1,19 @@
+<body style="background-color: #f0f2f5; font-family: sans-serif; margin: 0; padding: 20px;">
+    <div style="max-width: 600px; margin: 50px auto; background: white; padding: 30px; border-radius: 15px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+        <div style="width: 100px; height: 100px; background: #0d47a1; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; color: white; font-size: 40px;">
+            👤
+        </div>
+
+        <h1 style="color: #0d47a1;">Welcome, {{ user.username }}!</h1>
+        <p style="color: #666; font-style: italic;">"Your health is our priority. We are glad to have you back."</p>
+
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+
+        <div style="text-align: left; margin-bottom: 30px;">
+            <p><strong>Status:</strong> Active Account</p>
+            <p><strong>Member Since:</strong> {{ user.date_joined|date:"F Y" }}</p>
+        </div>
+
+        <a href="/counties/" style="text-decoration: none; background: #0d47a1; color: white; padding: 12px 40px; border-radius: 25px; font-weight: bold; display: inline-block;">NEXT</a>
+    </div>
+</body>

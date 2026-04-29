@@ -53,3 +53,19 @@ class Ward(models.Model):
 
     def __str__(self):
         return self.name
+class Medicine(models.Model):
+    name = models.CharField(max_length=100)
+    stock_quantity = models.IntegerField()
+    expiry_date = models.DateField()
+    description = models.TextField(blank=True)
+
+    def __str__(self):
+        return f"{self.name} ({self.stock_quantity} left)"
+class Medicine(models.Model):
+    name = models.CharField(max_length=100)
+    stock_quantity = models.IntegerField()
+    expiry_date = models.DateField()
+    description = models.TextField(blank=True)
+
+    def __str__(self):
+        return f"{self.name} ({self.stock_quantity} units)"

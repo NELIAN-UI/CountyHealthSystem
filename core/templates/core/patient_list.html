@@ -1,0 +1,8 @@
+<h2>All Registered Patients</h2>
+<ul>
+    {% for patient in patients %}
+        <li>{{ patient.first_name }} {{ patient.last_name }} - {{ patient.phone_number }}</li>
+    {% endfor %}
+</ul>
+<a href="/">Back to Dashboard</a>
+
